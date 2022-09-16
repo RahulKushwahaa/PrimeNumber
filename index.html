@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheakPrimeNumber</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script>
+    function prime()
+    {
+        //access all input control
+        var minRange=document.getElementById("minRange");
+        var maxRange=document.getElementById("maxRange");
+        var totalPrime=document.getElementById("totalPrime");
+
+        //check all values are entered or not
+        if(minRange.value==="")
+        {
+            alert("Please Enter Minimum Range.");
+            minRange.focus();
+            return;
+        }
+        if(maxRange.value==="")
+        {
+            alert("Please Enter Maximum Range.");
+            maxRange.focus();
+            return;
+        }
+        
+        //read value from all input element, convert it into float and strore in variables
+        var min=parseFloat(minRange.value);
+        var max=parseFloat(maxRange.value);
+         
+        var r=document.getElementById("result");
+        r.innerHTML="";
+        if(min<0)
+        min*=-1;
+        if(min==1)
+        min=2;
+
+        if(max<0)
+        max*=-1;
+
+        if(min>max)
+        {
+            var i=min;
+            min=max;
+            max=i;
+        }
+        
+        var n,c=0;
+        for(n=min;n<=max;n++)
+        {
+            var i,f=0;
+            for(i=2;i<=n/2;i++)
+            {
+                if(n%i==0)
+                f=1;
+            }
+            if(f==0)
+            {
+                r.innerHTML+=n+", ";
+                c++;
+            }
+        }
+        var total=c;
+        totalPrime.value=total+"";
+    }
+
+    function reset()
+        {
+            //access all input control
+            document.getElementById("minRange").value="";
+            document.getElementById("maxRange").value="";
+            document.getElementById("totalPrime").value="";
+
+            //set focus on Hindi element
+            document.getElementById("minRange").focus();
+        }
+    </script>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row"><hr/>
+            <div class="col-sm-12 text-center bg-warning">
+                <h1>Prime Number</h1>
+            </div>
+        </div><hr/><br/>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <label>Enter Minimum Range:-</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="number" id="minRange" class="form-control" placeholder="Enter Minimum Range"/><br/>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <label>Enter Maximum Range:-</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="number" id="maxRange" class="form-control" placeholder="Enter Maximum Range"/><br/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <label>Total Prime Number:-</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="totalPrime" readonly placeholder="Total"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                       <button class="btn btn-success btn-large" onclick="prime();">Print Result</button>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <button class="btn btn-primary btn-large" onclick="reset();">Reset</button>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">                
+                    <div class="col-sm-12">
+                        <p id="result"></p>
+                    </div>                
+                </div>
+            </div>            
+        </div>      
+    </div>
+</body>
+</html>
